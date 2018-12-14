@@ -1,6 +1,74 @@
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
+    <!-- Title -->
+    <title>Furry Broadcasting Network Stream </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page Description -->
+    <meta name="description" content="Furry Broadcasting Stream will be displaying streams from the FBN LLC, Furry Conventions, Music and many more!">
+
+    <!-- All The CSS Files -->
+    <link href="node_modules/timeslider/css/timeslider.css" rel="stylesheet" type="text/css"/>
+    <link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- XML -->
+
+    <script>
+        // Create the XHR object.
+        function createCORSRequest(method, url) {
+            var xhr = new XMLHttpRequest();
+            if ("withCredentials" in xhr) {
+                // XHR for Chrome/Firefox/Opera/Safari.
+                xhr.open(method, url, true);
+            } else if (typeof XDomainRequest != "undefined") {
+                // XDomainRequest for IE.
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+            } else {
+                // CORS not supported.
+                xhr = null;
+            }
+
+            xhr.onload = function() {
+                var responseText = xhr.responseText;
+                console.log(responseText);
+            };
+            xhr.onerror = function() {
+                console.log('There was an error!');
+            };
+            return xhr;
+        }
+
+        // Helper method to parse the title tag from the response.
+        function getTitle(text) {
+            return text.match('<title>(.*)?</title>')[1];
+        }
+
+        // Make the actual CORS request.
+        function makeCorsRequest() {
+            // This is a sample server that supports CORS.
+            var url = 'https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/551f7d446def4d069e2bb054160fd46c/index.m3u8';
+
+            var xhr = createCORSRequest('GET', url);
+            if (!xhr) {
+                alert('CORS not supported');
+                return;
+            }
+
+            // Response handlers.
+            xhr.onload = function() {
+                var text = xhr.responseText;
+                var title = getTitle(text);
+                alert('Response from CORS request to ' + url + ': ' + title);
+            };
+
+            xhr.onerror = function() {
+                alert('Woops, there was an error making the request.');
+            };
+
+            xhr.send();
+        }
+    </script>
     <link rel="stylesheet" href="{{ "/css/default.css" | prepend: site.baseurl }}?v={{ site.time }}">
-    <script async src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>

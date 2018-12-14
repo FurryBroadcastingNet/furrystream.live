@@ -2,6 +2,110 @@
 layout: default
 ---
 
-<header class="offset-md-3 col-md-6 col-sm-12">
+<div>
+    <div>
+        <video id="player" preload="auto" width="1024px" height="640px" poster="assets/images/behindvideo.jpg" class="video-js" controls preload="auto" data-setup="{}" >
+            <source src="https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/551f7d446def4d069e2bb054160fd46c/index.m3u8" type='application/x-mpegURL'>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+</div>
+<div>All times are adjusted to your local time</div>
+<div class="col-md-12" style="margin-bottom: 225px;">
+    <h3>Current Events!</h3>
+    <div id="date-slider-zoom"></div>
+    <div id="date-slider" class="time-slider"></div>
+    <button type="button" class="btn-primary reset">Jump Back to Current Event</button>
+</div>
+<div class="row"></div>
+<p id="messages"></p>
+<div id="events"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="node_modules/timeslider/js/timeslider.js"></script>
+<script type="text/javascript">
+    const cells = [
+    ];
 
-</header>
+    var currentDate = '';
+    var currentDateDiv;
+    cells.forEach(function(cell, index) {
+        cell['_id'] = 'cell-' + index;
+        cell['start'] = new Date(cell['start']).getTime();
+        cell['stop'] = new Date(cell['stop']).getTime();
+        let start = new Date(cell.start);
+        if(start.toDateString() != currentDate) {
+            $("#events").append(currentDateDiv);
+            currentDate = start.toDateString();
+            currentDateDiv = $("<div>")
+                .addClass('event-date')
+                .addClass('col-md-2')
+                .addClass('col-sm-4')
+                .append(
+                    $('<h2>')
+                        .text(currentDate)
+                );
+        }
+
+        currentDateDiv.append(
+            $('<div>')
+                .append(
+                    $('<a>')
+                        .addClass('event-time')
+                        .on('click', function() {
+                            let localTimeSlider = $('#date-slider').data("timeslider");
+                            localTimeSlider.set_new_start_timestamp(start.getTime());
+                        })
+                        .on('mouseover', function() {
+                            $('#' + cell._id)
+                                .addClass('highlight');
+                        })
+                        .on('mouseout', function() {
+                            $('#' + cell._id)
+                                .removeClass('highlight');
+                        })
+                        .text(cell.text)
+                        .append(
+                            $('<span>').text(start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + " - "
+                                + new Date(cell.stop).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
+                        )
+                )
+        );
+        $("#events").append(currentDateDiv);
+    });
+
+    (function () {
+        $('#version').text('Version: '+ $.fn.TimeSlider.VERSION);
+        $('#date-slider-zoom').slider({
+            min: 1,
+            max: 48,
+            value: 24,
+            step: 0.2,
+            slide: function(event, ui) {
+                $('#date-slider').TimeSlider({hours_per_ruler: ui.value});
+            }
+        });
+
+        let timeSlider = $('#date-slider').TimeSlider({
+            start_timestamp: new Date().getTime(),
+            current_timestamp: new Date().getTime(),
+            timecell_enable_move: false,
+            timecell_enable_resize: false,
+            hours_per_ruler: 8,
+            init_cells: cells,
+            on_add_cell_callback: function(id, start, stop) {
+                let timeCellInfo = cells.find(function(element) {
+                    return element._id === id;
+                });
+                $('#' + id).text(timeCellInfo.text);
+            }
+        });
+        $('.prompts').css('top', '-174px');
+        $('.reset').on('click', function(){
+            timeSlider.data("timeslider").set_new_start_timestamp(new Date().getTime());
+        });
+    })();
+</script>

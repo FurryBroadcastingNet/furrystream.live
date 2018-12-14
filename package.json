@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "",
-  "dependencies": {},
-  "devDependencies": {
-    "bootstrap": "^4.1.3"
+  "napa": {
+    "timeslider": "furrybroadcastingnetwork/timeslider"
   },
-  "scripts": {},
+  "devDependencies": {
+    "bootstrap": "^4.1.3",
+    "napa": "^3.0.0"
+  },
+  "scripts": {
+    "install": "napa"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/furrybroadcastingnetwork/channel-site.git"

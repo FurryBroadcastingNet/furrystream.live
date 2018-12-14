@@ -2,7 +2,6 @@
 markdown: kramdown
 exclude:
   - .idea
-  - node_modules
 include:
   - _pages
 plugins:

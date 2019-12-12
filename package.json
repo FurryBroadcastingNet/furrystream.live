@@ -7,7 +7,7 @@
     "timeslider": "furrybroadcastingnetwork/timeslider"
   },
   "devDependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.4.1",
     "napa": "^3.0.0"
   },
   "scripts": {

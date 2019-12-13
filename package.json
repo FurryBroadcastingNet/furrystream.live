@@ -8,9 +8,13 @@
   },
   "devDependencies": {
     "bootstrap": "^4.4.1",
-    "napa": "^3.0.0"
+    "napa": "^3.0.0",
+    "webpack": "^4.40.0",
+    "webpack-cli": "^3.3.8"
   },
   "scripts": {
+    "build": "webpack && bundle exec jekyll build",
+    "webpack": "webpack",
     "install": "napa"
   },
   "repository": {

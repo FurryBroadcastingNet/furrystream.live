@@ -1,16 +1,19 @@
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <!-- Title -->
     <title>Furry Broadcasting Network Stream </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page Description -->
-    <meta name="description" content="Furry Broadcasting Stream will be displaying streams from the FBN LLC, Furry Conventions, Music and many more!">
+    <meta name="description"
+        content="Furry Broadcasting Stream will be displaying streams from the FBN LLC, Furry Conventions, Music and many more!">
 
     <!-- All The CSS Files -->
-    <link href="node_modules/timeslider/css/timeslider.css" rel="stylesheet" type="text/css"/>
+    <link href="node_modules/timeslider/css/timeslider.css" rel="stylesheet" type="text/css" />
     <link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/5.0.1/dist/converse.min.css">
+    <script src="https://cdn.conversejs.org/5.0.1/dist/converse.min.js" charset="utf-8"></script>
 
     <!-- XML -->
     <script>
@@ -29,11 +32,11 @@
                 xhr = null;
             }
 
-            xhr.onload = function() {
+            xhr.onload = function () {
                 var responseText = xhr.responseText;
                 console.log(responseText);
             };
-            xhr.onerror = function() {
+            xhr.onerror = function () {
                 console.log('There was an error!');
             };
             return xhr;
@@ -56,13 +59,13 @@
             }
 
             // Response handlers.
-            xhr.onload = function() {
+            xhr.onload = function () {
                 var text = xhr.responseText;
                 var title = getTitle(text);
                 alert('Response from CORS request to ' + url + ': ' + title);
             };
 
-            xhr.onerror = function() {
+            xhr.onerror = function () {
                 alert('Woops, there was an error making the request.');
             };
 

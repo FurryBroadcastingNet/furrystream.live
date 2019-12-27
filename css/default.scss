@@ -5,6 +5,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import '../_sass/stream';
 
+.modal-backdrop.fade {
+  display: none;
+}
+
 .modal-backdrop.fade.show {
   display: none;
 }

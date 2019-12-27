@@ -5,6 +5,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import '../_sass/stream';
 
+.modal-backdrop.fade.show {
+  display: none;
+}
+
 footer {
     text-align: center;
 }

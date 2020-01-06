@@ -5,6 +5,27 @@
 @import 'bootstrap/scss/bootstrap';
 @import '../_sass/stream';
 
+.btn-primary {
+  color:#fff;
+  background-color:#6c6c6d;
+  border-color:#313131;
+}
+
+.btn-primary.reset {
+  color:#fff;
+  background-color:#6c6c6d;
+  border-color:#313131;
+}
+
+
+.modal-backdrop.fade {
+  display: none;
+}
+
+.modal-backdrop.fade.show {
+  display: none;
+}
+
 footer {
     text-align: center;
 }

@@ -77,7 +77,7 @@ if (typeof jQuery === 'undefined') {
         this.$element.find('.graduation-title').remove();
         this.$element.append(
             '<div class="ruler" style="height:' + (this.$element.height() + this.gt_height) + 'px;"></div>' +
-            '<div class="prompts" style="top:-' + (this.$element.height() * 2 + this.gt_height) + 'px;"></div>'
+            '<div class="prompts" style="top: -150px;"></div>'
         );
         this.$element.height(this.$element.height() + this.gt_height);
         this.$ruler = this.$element.find('.ruler');

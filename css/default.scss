@@ -5,6 +5,16 @@
 @import 'bootstrap/scss/bootstrap';
 @import '../_sass/stream';
 
+.time-slider .prompts {
+    top: 0;
+    left: 0;
+    position: relative;
+    overflow: hidden;
+    height: 150px;
+    width: 100%;
+    display: none;
+}
+
 .btn-primary {
   color:#fff;
   background-color:#6c6c6d;

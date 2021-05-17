@@ -9,7 +9,7 @@
   "devDependencies": {
     "bootstrap": "^4.5.3",
     "napa": "^3.0.0",
-    "webpack": "^5.9.0",
+    "webpack": "^5.37.0",
     "webpack-cli": "^4.2.0"
   },
   "scripts": {
